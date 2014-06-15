@@ -7,18 +7,13 @@ Split.ly allows friends to split wisely common expenses like the ones made durin
 
 ## Demo
 
-A live demo is available here: http://projects.kdelemme.com/splitly/app
-
-
-## Todo
-[ ] Add Tests
-[ ] Update existing expense
+A live demo is available here: http://projects.kdelemme.com/split.ly/app
 
 ## Installation
 
 Get the sources:
 ```bash
-git clone https://github.com/kdelemme/splitly.git
+git clone https://github.com/kdelemme/split.ly.git
 ```
 
 ### NodeJS
@@ -67,7 +62,7 @@ kevin@home:$ node api/app.js
 
 ### Client
 
-Open your browser on `http://localhost/splitly/app` (You need a http server configured to handle localhost/splitly correctly, e.g, Apache, nginx, ...)
+Open your browser on `http://localhost/split.ly/app` (You need a http server configured to handle localhost/splitly correctly, e.g, Apache, nginx, ...)
 
 ## Stack
 
