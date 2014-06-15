@@ -24,6 +24,7 @@ var routes = {};
 routes.sheets = require('./route/sheets.js');
 routes.friends = require('./route/friends.js');
 routes.expenses = require('./route/expenses.js');
+routes.stats = require('./route/stats.js');
 
 
 //Routing URLs
@@ -43,6 +44,8 @@ app.get('/expenses/:sheet_id', routes.expenses.readAllFromSheet);
 app.get('/expenses/:sheet_id/:id', routes.expenses.read);
 app.put('/expenses', routes.expenses.update); //todo to finish
 app.delete('/expenses/:sheet_id/:id', routes.expenses.delete);
+
+app.get('/stats', routes.stats.read);
 
 
 console.log('[INFO] Your project API started on port 3009');
