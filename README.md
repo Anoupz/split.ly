@@ -9,6 +9,8 @@ Split.ly allows friends to split wisely common expenses like the ones made durin
 
 A live demo is available here: http://projects.kdelemme.com/split.ly/app
 
+A live demo with data is available here: http://projects.kdelemme.com/split.ly/app/#/sheets/539dd3cf60e0a7aa1acb094e/
+
 ## Installation
 
 Get the sources:
@@ -22,7 +24,7 @@ In order to start the nodejs server, we need express, async and mongoose depende
 
 In the api directory, install the nodejs dependencies:
 ```bash
-kevin@home:api$ npm install
+kevin@home:api$ npm install gulp gulp-concat gulp-less
 ```
 
 ### AngularJS
