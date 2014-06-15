@@ -5,6 +5,8 @@
 
 Split.ly allows friends to split wisely common expenses like the ones made during road trips, parties, etc... It is a weekend project made for the only purpose of learning. Things I used: AngularJS, ui-router, MongoDB, mongoose, Nodejs & Async.
 
+[![Home Page](http://www.kdelemme.com/wp-content/uploads/2014/06/splitly-home.png)](http://www.kdelemme.com "Articles about javascript, angularjs, nodejs")
+
 ## Demo
 
 A live demo is available here: http://projects.kdelemme.com/split.ly/app
