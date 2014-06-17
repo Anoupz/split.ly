@@ -59,7 +59,6 @@ appControllers.controller('HomeCtrl', ['$scope', '$http', '$location', '$state',
 		};
 	}
 ]);
-
 appControllers.controller('SheetsCtrl', ['$scope', '$location', '$state', '$stateParams', 'SheetsService', 'FriendsService', 'ExpensesService', 'BalanceService',
 	function SheetsCtrl($scope, $location, $state, $stateParams, SheetsService, FriendsService, ExpensesService, BalanceService) {
 		$scope.sheet = {friends:[], expenses: []};
@@ -291,14 +290,12 @@ appServices.factory('BalanceService', function() {
 
 	};
 });
-
-
-appServices.factory('SheetsService', function($http, $q, Options) {
+appServices.factory('ExpensesService', function($http, $q, Options) {
 	return {
-		create: function() {
+		create: function(expense) {
 			var deferred = $q.defer();
 
-			$http.post(Options.baseUrl + '/sheets', {}).success(function(data) {
+			$http.post(Options.baseUrl + '/expenses', expense).success(function(data) {
 				deferred.resolve(data);
 			}).error(function(data, status) {
 				deferred.reject(data);
@@ -307,10 +304,10 @@ appServices.factory('SheetsService', function($http, $q, Options) {
 			return deferred.promise;
 		},
 
-		read: function(id) {
+		readAllFromSheet: function(sheet_id) {
 			var deferred = $q.defer();
 
-			$http.get(Options.baseUrl + '/sheets/' + id).success(function(data) {
+			$http.get(Options.baseUrl + '/expenses/' + sheet_id).success(function(data) {
 				deferred.resolve(data);
 			}).error(function(data, status) {
 				deferred.reject(data);
@@ -319,10 +316,34 @@ appServices.factory('SheetsService', function($http, $q, Options) {
 			return deferred.promise;
 		},
 
-		update: function(sheet) {
+		read: function(sheet_id, id) {
 			var deferred = $q.defer();
 
-			$http.put(Options.baseUrl + '/sheets', sheet).success(function(data) {
+			$http.get(Options.baseUrl + '/expenses/' + sheet_id + '/' + id).success(function(data) {
+				deferred.resolve(data);
+			}).error(function(data, status) {
+				deferred.reject(data);
+			});
+
+			return deferred.promise;
+		},
+
+		update: function(expense) {
+			var deferred = $q.defer();
+
+			$http.put(Options.baseUrl + '/expenses', expense).success(function(data) {
+				deferred.resolve(data);
+			}).error(function(data, status) {
+				deferred.reject(data);
+			});
+
+			return deferred.promise;
+		},
+
+		delete: function(sheet_id, id) {
+			var deferred = $q.defer();
+
+			$http.delete(Options.baseUrl + '/expenses/' + sheet_id + '/' + id).success(function(data) {
 				deferred.resolve(data);
 			}).error(function(data, status) {
 				deferred.reject(data);
@@ -332,8 +353,6 @@ appServices.factory('SheetsService', function($http, $q, Options) {
 		}
 	}
 });
-
-
 appServices.factory('FriendsService', function($http, $q, Options) {
 	return {
 		create: function(friend) {
@@ -397,68 +416,42 @@ appServices.factory('FriendsService', function($http, $q, Options) {
 		}
 	}
 });
+appServices.factory('SheetsService', function($http, $q, Options) {
+  return {
+    create: function() {
+      var deferred = $q.defer();
 
+      $http.post(Options.baseUrl + '/sheets', {}).success(function(data) {
+        deferred.resolve(data);
+      }).error(function(data, status) {
+        deferred.reject(data);
+      });
 
-appServices.factory('ExpensesService', function($http, $q, Options) {
-	return {
-		create: function(expense) {
-			var deferred = $q.defer();
+      return deferred.promise;
+    },
 
-			$http.post(Options.baseUrl + '/expenses', expense).success(function(data) {
-				deferred.resolve(data);
-			}).error(function(data, status) {
-				deferred.reject(data);
-			});
+    read: function(id) {
+      var deferred = $q.defer();
 
-			return deferred.promise;
-		},
+      $http.get(Options.baseUrl + '/sheets/' + id).success(function(data) {
+        deferred.resolve(data);
+      }).error(function(data, status) {
+        deferred.reject(data);
+      });
 
-		readAllFromSheet: function(sheet_id) {
-			var deferred = $q.defer();
+      return deferred.promise;
+    },
 
-			$http.get(Options.baseUrl + '/expenses/' + sheet_id).success(function(data) {
-				deferred.resolve(data);
-			}).error(function(data, status) {
-				deferred.reject(data);
-			});
+    update: function(sheet) {
+      var deferred = $q.defer();
 
-			return deferred.promise;
-		},
+      $http.put(Options.baseUrl + '/sheets', sheet).success(function(data) {
+        deferred.resolve(data);
+      }).error(function(data, status) {
+        deferred.reject(data);
+      });
 
-		read: function(sheet_id, id) {
-			var deferred = $q.defer();
-
-			$http.get(Options.baseUrl + '/expenses/' + sheet_id + '/' + id).success(function(data) {
-				deferred.resolve(data);
-			}).error(function(data, status) {
-				deferred.reject(data);
-			});
-
-			return deferred.promise;
-		},
-
-		update: function(expense) {
-			var deferred = $q.defer();
-
-			$http.put(Options.baseUrl + '/expenses', expense).success(function(data) {
-				deferred.resolve(data);
-			}).error(function(data, status) {
-				deferred.reject(data);
-			});
-
-			return deferred.promise;
-		},
-
-		delete: function(sheet_id, id) {
-			var deferred = $q.defer();
-
-			$http.delete(Options.baseUrl + '/expenses/' + sheet_id + '/' + id).success(function(data) {
-				deferred.resolve(data);
-			}).error(function(data, status) {
-				deferred.reject(data);
-			});
-
-			return deferred.promise;
-		}
-	}
+      return deferred.promise;
+    }
+  }
 });
