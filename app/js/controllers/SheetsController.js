@@ -142,8 +142,6 @@ appControllers.controller('SheetsCtrl', ['$scope', '$location', '$state', '$stat
 			newExpense.sheet_id = sheet_id;
 			newExpense.date = dt;
 
-			console.log(newExpense);
-
 			ExpensesService.create(newExpense).then(function(data) {
 				$scope.sheet.expenses.push(data);
 				return $state.go('sheets.expenses', {id: $scope.sheet._id});

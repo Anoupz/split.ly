@@ -1,14 +1,14 @@
-<form class="form-horizontal" role="form">
+<form name="form" class="form-horizontal" role="form">
 	<div class="form-group">
 		<label for="inputName" class="col-sm-4 control-label">Name</label>
 		<div class="col-sm-4">
-	  		<input type="text" class="form-control" id="inputName" placeholder="Name this expense" ng-model="expense.name">
+	  		<input type="text" class="form-control" id="inputName" placeholder="Name this expense" name="eName" ng-model="expense.name" ng-minlength="3" ng-trim="true"required>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="inputAmount" class="col-sm-4 control-label">Amount</label>
 		<div class="col-sm-4">
-	  		<input type="text" class="form-control" id="inputAmount" placeholder="Amount" ng-model="expense.amount">
+	  		<input type="text" class="form-control" id="inputAmount" placeholder="Amount" name="eAmount" ng-model="expense.amount" ng-trim="true" required>
 		</div>
 	</div>
 	<div class="form-group">
@@ -22,7 +22,7 @@
 	<div class="form-group">
 		<label for="selectPaidBy" class="col-sm-4 control-label">Paid By</label>
 		<div class="col-sm-4">
-			<select class="form-control" ng-model="expense.paid_by">
+			<select class="form-control" name="ePaidBy" ng-model="expense.paid_by" required>
 				<option value="{{friend._id}}"  ng-repeat="friend in sheet.friends">{{friend.name}}</option>
 			</select>
 		</div>
@@ -31,7 +31,7 @@
 	<div class="form-group">
 		<label for="selectPaidBy" class="col-sm-4 control-label">Paid For</label>
 		<div class="col-sm-4">
-			<select class="form-control" multiple ng-model="expense.paid_for">
+			<select class="form-control" multiple name="ePaidFor" ng-model="expense.paid_for" required>
 				<option value="{{friend._id}}"  ng-repeat="friend in sheet.friends">{{friend.name}}</option>
 			</select>
 		</div>
